@@ -29,7 +29,7 @@ type configurationVersions struct {
 // ConfigurationStatus represents a configuration version status.
 type ConfigurationStatus string
 
-//List all available configuration version statuses.
+// List all available configuration version statuses.
 const (
 	ConfigurationErrored  ConfigurationStatus = "errored"
 	ConfigurationPending  ConfigurationStatus = "pending"
@@ -43,7 +43,8 @@ type ConfigurationVersion struct {
 	ID     string              `jsonapi:"primary,configuration-versions"`
 	Status ConfigurationStatus `jsonapi:"attr,status"`
 	// Relations
-	Workspace *Workspace `jsonapi:"relation,workspace"`
+	Workspace   *Workspace   `jsonapi:"relation,workspace"`
+	VcsRevision *VcsRevision `jsonapi:"relation,vcs-revision,omitempty"`
 }
 
 // ConfigurationVersionCreateOptions represents the options for creating a
@@ -51,6 +52,10 @@ type ConfigurationVersion struct {
 type ConfigurationVersionCreateOptions struct {
 	// For internal use only!
 	ID string `jsonapi:"primary,configuration-versions"`
+
+	// Indicates if a run should automatically be queued when the configuration
+	// has been uploaded.
+	AutoQueueRuns *bool `jsonapi:"attr,auto-queue-runs,omitempty"`
 
 	Workspace *Workspace `jsonapi:"relation,workspace"`
 }
@@ -94,8 +99,13 @@ func (s *configurationVersions) Read(ctx context.Context, cvID string) (*Configu
 		return nil, errors.New("invalid value for configuration version ID")
 	}
 
+	options := struct {
+		Include string `url:"include"`
+	}{
+		Include: "vcs-revision",
+	}
 	u := fmt.Sprintf("configuration-versions/%s", url.QueryEscape(cvID))
-	req, err := s.client.newRequest("GET", u, nil)
+	req, err := s.client.newRequest("GET", u, options)
 	if err != nil {
 		return nil, err
 	}
