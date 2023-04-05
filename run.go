@@ -28,7 +28,7 @@ type runs struct {
 // RunStatus represents a run state.
 type RunStatus string
 
-//List all available run statuses.
+// List all available run statuses.
 const (
 	RunApplied            RunStatus = "applied"
 	RunApplyQueued        RunStatus = "apply_queued"
@@ -79,6 +79,7 @@ type Run struct {
 	Plan                 *Plan                 `jsonapi:"relation,plan"`
 	PolicyChecks         []*PolicyCheck        `jsonapi:"relation,policy-checks"`
 	Workspace            *Workspace            `jsonapi:"relation,workspace"`
+	StatusTransitions    []*StatusTransition   `jsonapi:"relation,status-transitions"`
 }
 
 // RunCreateOptions represents the options for creating a new run.
@@ -140,7 +141,7 @@ func (s *runs) Read(ctx context.Context, runID string) (*Run, error) {
 	options := struct {
 		Include string `url:"include"`
 	}{
-		Include: "vcs-revision",
+		Include: "vcs-revision,status-transitions",
 	}
 
 	u := fmt.Sprintf("runs/%s", url.QueryEscape(runID))
