@@ -18,6 +18,12 @@ type Runs interface {
 	Read(ctx context.Context, runID string) (*Run, error)
 	// Create a new run with the given options.
 	Create(ctx context.Context, options RunCreateOptions) (*Run, error)
+	// Apply a run that is paused waiting for confirmation after a plan.
+	Apply(ctx context.Context, runID string, options RunApplyOptions) error
+	// Interrupt a run that is currently planning or applying.
+	Cancel(ctx context.Context, runID string, options RunCancelOptions) error
+	// Skip any remaining work on runs that are paused waiting for confirmation or priority.
+	Discard(ctx context.Context, runID string, options RunDiscardOptions) error
 }
 
 // runs implements Runs.
@@ -28,7 +34,7 @@ type runs struct {
 // RunStatus represents a run state.
 type RunStatus string
 
-//List all available run statuses.
+// List all available run statuses.
 const (
 	RunApplied            RunStatus = "applied"
 	RunApplyQueued        RunStatus = "apply_queued"
@@ -156,4 +162,71 @@ func (s *runs) Read(ctx context.Context, runID string) (*Run, error) {
 	}
 
 	return r, nil
+}
+
+// RunApplyOptions represents the options for applying a Run.
+type RunApplyOptions struct {
+	Comment string     `jsonapi:"attr,comment"`
+	ApplyAt *time.Time `jsonapi:"attr,apply-at,iso8601"`
+}
+
+// Apply a run that is paused waiting for confirmation after a plan.
+func (s *runs) Apply(ctx context.Context, runID string, options RunApplyOptions) error {
+	if !validStringID(&runID) {
+		return errors.New("invalid value for run ID")
+	}
+
+	u := fmt.Sprintf("runs/%s/actions/apply", url.PathEscape(runID))
+	req, err := s.client.newRequest("POST", u, &options)
+	if err != nil {
+		return err
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	return s.client.do(ctx, req, nil)
+}
+
+// RunCancelOptions represents the options for canceling a Run.
+type RunCancelOptions struct {
+	Comment string `jsonapi:"attr,comment"`
+}
+
+// Cancel interrupts a run that is currently planning or applying.
+func (s *runs) Cancel(ctx context.Context, runID string, options RunCancelOptions) error {
+	if !validStringID(&runID) {
+		return errors.New("invalid value for run ID")
+	}
+
+	u := fmt.Sprintf("runs/%s/actions/cancel", url.PathEscape(runID))
+	req, err := s.client.newRequest("POST", u, &options)
+	if err != nil {
+		return err
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	return s.client.do(ctx, req, nil)
+}
+
+// RunDiscardOptions represents the options for discarding a Run.
+type RunDiscardOptions struct {
+	Comment string `jsonapi:"attr,comment"`
+}
+
+// Discard skips any remaining work on runs that are paused waiting for confirmation or priority.
+func (s *runs) Discard(ctx context.Context, runID string, options RunDiscardOptions) error {
+	if !validStringID(&runID) {
+		return errors.New("invalid value for run ID")
+	}
+
+	u := fmt.Sprintf("runs/%s/actions/discard", url.PathEscape(runID))
+	req, err := s.client.newRequest("POST", u, &options)
+	if err != nil {
+		return err
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+
+	return s.client.do(ctx, req, nil)
 }
