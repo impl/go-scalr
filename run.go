@@ -79,6 +79,7 @@ type Run struct {
 	Plan                 *Plan                 `jsonapi:"relation,plan"`
 	PolicyChecks         []*PolicyCheck        `jsonapi:"relation,policy-checks"`
 	Workspace            *Workspace            `jsonapi:"relation,workspace"`
+	StateVersions        []*StateVersion       `jsonapi:"relation,state-versions,omitempty"`
 }
 
 // RunCreateOptions represents the options for creating a new run.
