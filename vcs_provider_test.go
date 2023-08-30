@@ -146,7 +146,7 @@ func TestVcsProvidersCreate(t *testing.T) {
 			t,
 			ResourceNotFoundError{
 				Message: fmt.Sprintf(
-					"Invalid Relationship\n\nRelationship 'environments' with ID '%s' not found or user unauthorized",
+					"Invalid Relationship\n\nRelationship 'environments' with ID '%s' not found or user unauthorized.",
 					badIdentifier,
 				),
 			}.Error(),
@@ -273,7 +273,7 @@ func TestVcsProvidersDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("VcsProvider with ID '%s' not found or user unauthorized", vcsTest.ID),
+				Message: fmt.Sprintf("VcsProvider with ID '%s' not found or user unauthorized.", vcsTest.ID),
 			}.Error(),
 			err.Error(),
 		)

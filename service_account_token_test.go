@@ -42,7 +42,7 @@ func TestServiceAccountTokenList(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("ServiceAccount with ID '%s' not found or user unauthorized", saId),
+				Message: fmt.Sprintf("ServiceAccount with ID '%s' not found or user unauthorized.", saId),
 			}.Error(),
 			err.Error(),
 		)
@@ -102,7 +102,7 @@ func TestServiceAccountTokenCreate(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("ServiceAccount with ID '%s' not found or user unauthorized", saID),
+				Message: fmt.Sprintf("ServiceAccount with ID '%s' not found or user unauthorized.", saID),
 			}.Error(),
 			err.Error(),
 		)

@@ -28,7 +28,7 @@ func TestAccountRead(t *testing.T) {
 		_, err := client.Accounts.Read(ctx, accId)
 		assert.Equal(
 			t,
-			fmt.Sprintf("Clients with ID '%s' not found or user unauthorized", accId),
+			fmt.Sprintf("Clients with ID '%s' not found or user unauthorized.", accId),
 			err.Error(),
 		)
 	})

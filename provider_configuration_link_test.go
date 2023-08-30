@@ -109,7 +109,7 @@ func TestProviderConfigurationLinkDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("ProviderConfigurationLink with ID '%s' not found or user unauthorized", link.ID),
+				Message: fmt.Sprintf("ProviderConfigurationLink with ID '%s' not found or user unauthorized.", link.ID),
 			}.Error(),
 			err.Error(),
 		)

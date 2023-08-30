@@ -145,7 +145,7 @@ func TestPolicyGroupsCreate(t *testing.T) {
 			t,
 			err,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Clients with ID '%s' not found or user unauthorized", accID),
+				Message: fmt.Sprintf("Clients with ID '%s' not found or user unauthorized.", accID),
 			}.Error(),
 		)
 	})
@@ -165,7 +165,7 @@ func TestPolicyGroupsCreate(t *testing.T) {
 			t,
 			err,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("VcsProvider with ID '%s' not found or user unauthorized", vcsID),
+				Message: fmt.Sprintf("VcsProvider with ID '%s' not found or user unauthorized.", vcsID),
 			}.Error(),
 		)
 	})
@@ -268,7 +268,7 @@ func TestPolicyGroupsDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("PolicyGroups with ID '%s' not found or user unauthorized", policyGroup.ID),
+				Message: fmt.Sprintf("PolicyGroups with ID '%s' not found or user unauthorized.", policyGroup.ID),
 			}.Error(),
 			err.Error(),
 		)
