@@ -155,7 +155,7 @@ func TestWebhookIntegrationsDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Webhook with ID '%s' not found or user unauthorized", whTest.ID),
+				Message: fmt.Sprintf("Webhook with ID '%s' not found or user unauthorized.", whTest.ID),
 			}.Error(),
 			err.Error(),
 		)

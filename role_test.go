@@ -139,7 +139,7 @@ func TestRolesCreate(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Invalid Relationship\n\nAccount with ID '%s' not found or user unauthorized", accountId),
+				Message: fmt.Sprintf("Invalid Relationship\n\nAccount with ID '%s' not found or user unauthorized.", accountId),
 			}.Error(),
 			err.Error(),
 		)
@@ -259,7 +259,7 @@ func TestRolesDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("IamRole with ID '%s' not found or user unauthorized", rTest.ID),
+				Message: fmt.Sprintf("IamRole with ID '%s' not found or user unauthorized.", rTest.ID),
 			}.Error(),
 			err.Error(),
 		)

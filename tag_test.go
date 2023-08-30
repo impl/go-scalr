@@ -106,7 +106,7 @@ func TestTagsCreate(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Invalid Relationship\n\nAccount with ID '%s' not found or user unauthorized", accountId),
+				Message: fmt.Sprintf("Invalid Relationship\n\nAccount with ID '%s' not found or user unauthorized.", accountId),
 			}.Error(),
 			err.Error(),
 		)
@@ -189,7 +189,7 @@ func TestTagsDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("AccountTag with ID '%s' not found or user unauthorized", tagTest.ID),
+				Message: fmt.Sprintf("AccountTag with ID '%s' not found or user unauthorized.", tagTest.ID),
 			}.Error(),
 			err.Error(),
 		)

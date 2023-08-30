@@ -62,7 +62,7 @@ func TestConfigurationVersionsRead(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("ConfigurationVersion with ID '%s' not found or user unauthorized", cvName),
+				Message: fmt.Sprintf("ConfigurationVersion with ID '%s' not found or user unauthorized.", cvName),
 			}.Error(),
 			err.Error(),
 		)

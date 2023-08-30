@@ -182,7 +182,7 @@ func TestWorkspacesCreate(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Invalid Relationship\n\nEnvironment with ID '%s' not found or user unauthorized", badIdentifier),
+				Message: fmt.Sprintf("Invalid Relationship\n\nEnvironment with ID '%s' not found or user unauthorized.", badIdentifier),
 			}.Error(),
 			err.Error(),
 		)
@@ -481,7 +481,7 @@ func TestWorkspacesDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Workspace with ID '%s' not found or user unauthorized", wTest.ID),
+				Message: fmt.Sprintf("Workspace with ID '%s' not found or user unauthorized.", wTest.ID),
 			}.Error(),
 			err.Error(),
 		)

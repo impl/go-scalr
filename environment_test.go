@@ -151,7 +151,7 @@ func TestEnvironmentsRead(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Environment with ID '%s' not found or user unauthorized", envId),
+				Message: fmt.Sprintf("Environment with ID '%s' not found or user unauthorized.", envId),
 			}.Error(),
 			err.Error(),
 		)
@@ -261,7 +261,7 @@ func TestEnvironmentsDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Environment with ID '%s' not found or user unauthorized", envTest.ID),
+				Message: fmt.Sprintf("Environment with ID '%s' not found or user unauthorized.", envTest.ID),
 			}.Error(),
 			err.Error(),
 		)
@@ -273,7 +273,7 @@ func TestEnvironmentsDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("Environment with ID '%s' not found or user unauthorized", envId),
+				Message: fmt.Sprintf("Environment with ID '%s' not found or user unauthorized.", envId),
 			}.Error(),
 			err.Error(),
 		)

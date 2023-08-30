@@ -64,7 +64,7 @@ func TestAccessTokenUpdate(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("AccessToken with ID '%s' not found or user unauthorized", "at-123"),
+				Message: fmt.Sprintf("AccessToken with ID '%s' not found or user unauthorized.", "at-123"),
 			}.Error(),
 			err.Error(),
 		)

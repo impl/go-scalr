@@ -169,7 +169,7 @@ func TestProviderConfigurationParameterDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("ProviderConfigurationParameter with ID '%s' not found or user unauthorized", parameter.ID),
+				Message: fmt.Sprintf("ProviderConfigurationParameter with ID '%s' not found or user unauthorized.", parameter.ID),
 			}.Error(),
 			err.Error(),
 		)

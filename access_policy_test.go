@@ -244,7 +244,7 @@ func TestAccessPoliciesDelete(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("IamAccessPolicy with ID '%v' not found or user unauthorized", apTest.ID),
+				Message: fmt.Sprintf("IamAccessPolicy with ID '%v' not found or user unauthorized.", apTest.ID),
 			}.Error(),
 			err.Error(),
 		)

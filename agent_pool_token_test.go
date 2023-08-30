@@ -30,7 +30,7 @@ func TestAgentPoolTokenList(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("AgentPool with ID '%s' not found or user unauthorized", "ap-123"),
+				Message: fmt.Sprintf("AgentPool with ID '%s' not found or user unauthorized.", "ap-123"),
 			}.Error(),
 			err.Error(),
 		)
@@ -89,7 +89,7 @@ func TestAgentPoolTokenCreate(t *testing.T) {
 		assert.Equal(
 			t,
 			ResourceNotFoundError{
-				Message: fmt.Sprintf("AgentPool with ID '%s' not found or user unauthorized", apID),
+				Message: fmt.Sprintf("AgentPool with ID '%s' not found or user unauthorized.", apID),
 			}.Error(),
 			err.Error(),
 		)

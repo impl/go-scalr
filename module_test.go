@@ -71,7 +71,7 @@ func TestModulesCreate(t *testing.T) {
 		})
 		assert.Nil(t, w)
 		assert.EqualError(t, err, ResourceNotFoundError{
-			Message: fmt.Sprintf("Invalid Relationship\n\nVcsProvider with ID '%s' not found or user unauthorized", badIdentifier),
+			Message: fmt.Sprintf("Invalid Relationship\n\nVcsProvider with ID '%s' not found or user unauthorized.", badIdentifier),
 		}.Error())
 	})
 
