@@ -28,7 +28,7 @@ type runs struct {
 // RunStatus represents a run state.
 type RunStatus string
 
-//List all available run statuses.
+// List all available run statuses.
 const (
 	RunApplied            RunStatus = "applied"
 	RunApplyQueued        RunStatus = "apply_queued"
@@ -85,6 +85,9 @@ type Run struct {
 type RunCreateOptions struct {
 	// For internal use only!
 	ID string `jsonapi:"primary,runs"`
+
+	// Whether this run is going to destroy instead of apply.
+	IsDestroy *bool `jsonapi:"attr,is-destroy,omitempty"`
 
 	// Specifies the configuration version to use for this run.
 	ConfigurationVersion *ConfigurationVersion `jsonapi:"relation,configuration-version"`
